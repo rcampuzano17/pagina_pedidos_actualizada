@@ -1,52 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Panel Admin - ELI</title>
-  <link href="style.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Administrador - Menú</title>
 </head>
 <body>
-  <header>
-    <h1>🔒 Panel de Administración</h1>
-  </header>
+    <h2>Administrador - Configura el Menú del Día</h2>
+    <label>Nombre del plato:</label>
+    <input type="text" id="plato"><br><br>
+    <label>Precio:</label>
+    <input type="number" id="precio"><br><br>
+    <button onclick="guardarMenu()">Guardar Menú</button>
 
-  <!-- Sección para ingresar la clave -->
-  <section id="acceso" style="text-align: center; padding: 20px;">
-    <p>Ingresa la clave para acceder al panel:</p>
-    <input id="clave" type="password" placeholder="Clave de acceso" style="padding: 10px; font-size: 16px; border-radius: 8px; border: 1px solid #ccc; width: 250px;"/>
-    <button onclick="verificarClave()" style="padding: 10px 20px; font-size: 16px; margin-left: 10px; border-radius: 8px; border: none; background-color: #3498db; color: white; cursor: pointer;">Entrar</button>
-  </section>
+    <p id="status"></p>
 
-  <!-- Panel oculto hasta ingresar la clave correcta -->
-  <section id="panel" style="display: none;">
-    <section class="admin-form">
-      <form id="formulario" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
-        <input id="nombre" placeholder="Nombre del plato" required style="width: 100%; max-width: 400px; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc;" type="text"/>
-        <input id="precio" placeholder="Precio ($)" required style="width: 100%; max-width: 400px; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc;" type="number"/>
-        <input accept="image/*" id="imagen" required style="width: 100%; max-width: 400px; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc;" type="file"/>
-        <button type="submit" style="padding: 12px 20px; background-color: #28a745; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 16px;">➕ Agregar Plato</button>
-      </form>
-    </section>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCsa82plc6IJo_HCnJjh9nTfwmAQUmCUQ8",
+        authDomain: "pagina-de-pedido.firebaseapp.com",
+        databaseURL: "https://pagina-de-pedido-default-rtdb.firebaseio.com",
+        projectId: "pagina-de-pedido",
+        storageBucket: "pagina-de-pedido.firebasestorage.app",
+        messagingSenderId: "958081475624",
+        appId: "1:958081475624:web:10c36d7031dae8a176411d"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.database();
 
-    <section class="menu-grid" id="menuAdmin">
-      <!-- Aquí se mostrarán los platos agregados -->
-    </section>
-  </section>
-
-  <script>
-    function verificarClave() {
-      const clave = document.getElementById("clave").value;
-      if (clave === "eli2025") {
-        document.getElementById("acceso").style.display = "none";
-        document.getElementById("panel").style.display = "block";
-        cargarLista(); // Asegúrate de que esta función exista en admin.js si se usa
-      } else {
-        alert("Clave incorrecta");
+      function guardarMenu() {
+        const plato = document.getElementById("plato").value;
+        const precio = document.getElementById("precio").value;
+        db.ref("menu").set({
+          plato: plato,
+          precio: precio
+        }).then(() => {
+          document.getElementById("status").innerText = "✅ Menú guardado con éxito.";
+        });
       }
-    }
-  </script>
-
-  <script src="admin.js"></script>
+    </script>
 </body>
 </html>
