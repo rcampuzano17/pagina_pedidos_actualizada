@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ELI – Comida a Domicilio</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+
+<body>
+<header>
+<h1>🍽️ ELI - Comida a Domicilio</h1>
+<p>Disfruta de nuestros platos caseros, directo a tu puerta 🚗💨</p>
+</header>
+<main class="menu-grid" id="menu"></main>
+<section class="pedido-total" style="display: flex; flex-direction: column; align-items: center; padding: 20px; background: #ecf0f1; border-radius: 10px;">
+  <input id="nombre" placeholder="Nombre completo" required="true" style="width: 90%; max-width: 400px; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc; font-size:16px;" type="text"/>
+  <input id="direccion" placeholder="Dirección" required="true" style="width: 90%; max-width: 400px; padding: 12px; margin-bottom: 20px; border-radius: 10px; border: 1px solid #ccc; font-size:16px;" type="text"/>
+  <h3>🧾 Pedido</h3>
+  <ul id="pedido-lista"></ul>
+  <p><strong>Total: <span id="total">$0</span></strong></p>
+  <button id="vaciarPedido">🗑️ Borrar pedido</button>
+</section>
+<section class="metodo-pago">
+  <h2>Métodos de Pago</h2>
+  <ul>
+    <li>📲 Nequi / Daviplata: <strong>3134114972</strong></li>
+    <li>💵 Efectivo contra entrega</li>
+  </ul>
+  <a id="btnEnviar" class="whatsapp-btn" href="#" target="_blank">
+    📦 Enviar pedido por WhatsApp
+  </a>
+</section>
+
+<footer>
+  <p>© 2025 ELI - Todos los derechos reservados</p>
+  <a href="admin.html">🔒 Panel de Administración</a>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
